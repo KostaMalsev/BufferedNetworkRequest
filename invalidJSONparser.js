@@ -8,8 +8,8 @@ class InvalidJSONParser {
     let objNestingCounter = 0;
     let lastValidIndex = 0;
     
-    str.forEach(char => {
-            
+    str.split('').forEach(char => {
+      
       if (char === '{') {
         
         objNestingCounter++;
