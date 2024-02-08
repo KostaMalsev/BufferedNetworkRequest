@@ -14,14 +14,17 @@ class InvalidJSONParser {
       
       if (char === '{') {
         
-        if (objNestingCounter === 0 &&
-            i !== 0) {
+        if (objNestingCounter === 0) {
           
-          lastValidIndex = (i - 1);
+          if (i !== 0) {
           
-        } else {
-          
-          lastValidIndex = 0;
+            lastValidIndex = (i - 1);
+            
+          } else {
+            
+            lastValidIndex = 0;
+            
+          }
           
         }
         
