@@ -52,7 +52,15 @@ class InvalidJSONParser {
     if (validStr.startsWith('[') &&
         !validStr.endsWith(']')) {
       
-      // close it
+      // if the string ends with a comma,
+      // remove it
+      if (validStr.endsWith(',')) {
+        
+        validStr = validStr.slice(0, -1);
+        
+      }
+      
+      // close the top-level array
       validStr += ']';
       
     }
