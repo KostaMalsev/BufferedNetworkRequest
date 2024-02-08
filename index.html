@@ -39,6 +39,8 @@ async function main() {
   const total = parseInt(contentLength, 10);
   let loaded = 0;
 
+  const respText = '';
+
   const res = new Response(new ReadableStream({
     async start(controller) {
       const reader = response.body.getReader();
@@ -54,20 +56,21 @@ async function main() {
         
         // should reparse entire string until last parse index and compare the changes
         const string = new TextDecoder().decode(value);
-                
+        
         const { validData, lastValidIndex } = InvalidJSONParser.parse(string);
         
         console.log(validData);
         
-                
+        
+        respText += string;
+        
         controller.enqueue(value);
       }
       controller.close();
     },
   }));
   
-  let resp = await res.text();
-  resp = JSON.parse(resp);
+  const resp = JSON.parse(respText);
   
   console.log('completed', resp);
   
