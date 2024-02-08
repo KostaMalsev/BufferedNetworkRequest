@@ -69,7 +69,13 @@ class InvalidJSONParser {
     }
     
     
-    const validData = JSON.parse(validStr);
+    let validData = '';
+    
+    if (validStr) {
+      
+      validData = JSON.parse(validStr);
+      
+    }
     
     return { validData, lastValidIndex };
     
