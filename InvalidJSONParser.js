@@ -16,15 +16,7 @@ class InvalidJSONParser {
         
         if (objNestingCounter === 0) {
           
-          if (i !== 0) {
-          
-            lastValidIndex = (i - 1);
-            
-          } else {
-            
-            lastValidIndex = 0;
-            
-          }
+          lastValidIndex = (i - 1);
           
         }
         
@@ -47,7 +39,7 @@ class InvalidJSONParser {
     if (objNestingCounter !== 0) {
       
       // get the string up to the last valid index
-      validStr = str.slice(0, lastValidIndex);
+      validStr = str.slice(0, (lastValidIndex + 1));
       
     } else {
       
