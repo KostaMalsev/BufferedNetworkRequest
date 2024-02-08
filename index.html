@@ -76,16 +76,6 @@ async function main() {
           const realStr = JSON.stringify(realDataArrSlice),
                 validStr = JSON.stringify(validData);
           
-          
-          console.groupCollapsed('realStr');
-          console.log(parent.beautifier.js(realStr, parent.formatterOptions));
-          console.groupEnd();
-          
-          console.groupCollapsed('validStr');
-          console.log(parent.beautifier.js(validStr, parent.formatterOptions));
-          console.groupEnd();
-          
-          
           const doesDataMatch = (realStr === validStr);
           
           console.log('doesDataMatch?', doesDataMatch);
