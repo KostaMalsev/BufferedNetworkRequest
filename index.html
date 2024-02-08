@@ -46,9 +46,9 @@ async function main() {
           
           // @@debug
           
-          loadedBytes += value.byteLength;
+          console.group('update');
           
-          console.log('[update] loaded bytes:', loadedBytes);
+          loadedBytes += value.byteLength;
           
           status('loaded bytes: ' + loadedBytes);
           
@@ -77,6 +77,8 @@ async function main() {
           const doesDataMatch = (realStr === validStr);
           
           console.log('doesDataMatch?', doesDataMatch);
+
+          console.groupEnd('update');
 
           
           controller.enqueue(value);
