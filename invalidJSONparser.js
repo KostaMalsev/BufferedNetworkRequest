@@ -8,7 +8,9 @@ class InvalidJSONParser {
     let objNestingCounter = 0;
     let lastValidIndex = 0;
     
-    str.split('').forEach(char => {
+    for (let i = 0; i < str.length; i++) {
+      
+      const char = str[i];
       
       if (char === '{') {
         
@@ -28,7 +30,7 @@ class InvalidJSONParser {
         
       }
       
-    });
+    }
     
     
     let validStr = str;
