@@ -48,34 +48,34 @@ async function main() {
         
         const {done, value} = await reader.read();
         
-        loaded += value.byteLength;
+        console.log('update. done:', done);
         
-        status('progress (bytes): ' + loaded);
-        
-        console.log('update');
-        
-        
-        // should reparse entire string until last parse index and compare the changes
-        const string = new TextDecoder().decode(value);
-        
-        const { validData, lastValidIndex } = InvalidJSONParser.parse(string);
-        
-        console.log(validData);
-        
-        
-        respText += string;
-        
-        if (done) {
+        if (!done) {
           
-          console.log('a');
+          loaded += value.byteLength;
+          
+          status('progress (bytes): ' + loaded);
+          
+          
+          // should reparse entire string until last parse index and compare the changes
+          const string = new TextDecoder().decode(value);
+          
+          const { validData, lastValidIndex } = InvalidJSONParser.parse(string);
+          
+          console.log(validData);
+          
+          
+          respText += string;
+          
+          controller.enqueue(value);
+          
+        } else {
           
           console.log('resp', respText);
           
           break;
           
         }
-        
-        controller.enqueue(value);
         
       }
       controller.close();
