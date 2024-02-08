@@ -91,6 +91,52 @@ async function main() {
           console.log('doesDataMatch?', doesDataMatch);
           
           
+          if (!doesDataMatch) {
+            
+            const longerStrLen = Math.max(realStr.length, validStr.length);
+            
+            let diff = [];
+            
+            let diffIndex = 0;
+            let lastWriteIndex = 0;
+            
+            for (let i = 0; i < longerStrLen; i++) {
+              
+              const charStr1 = realStr[i];
+              const charStr2 = validStr[i];
+              
+              if (charStr1 !== charStr2) {
+                
+                let writeChar = charStr1;
+                
+                if (!charStr1) {
+                  
+                  writeChar = charStr2;
+                  
+                }
+                
+                
+                if (lastWriteIndex !== (i - 1)) {
+                  
+                  diffIndex++;
+                  
+                }
+                
+                
+                diff[diffIndex] += writeChar;
+                
+                
+                lastWriteIndex = i;
+                
+              }
+              
+            }
+            
+            console.log('diff', diff);
+            
+          }
+          
+          
           controller.enqueue(value);
           
         } else {
