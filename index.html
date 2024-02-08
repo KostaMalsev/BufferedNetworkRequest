@@ -39,7 +39,7 @@ async function main() {
   const total = parseInt(contentLength, 10);
   let loaded = 0;
 
-  const respText = '';
+  let respText = '';
 
   const res = new Response(new ReadableStream({
     async start(controller) {
