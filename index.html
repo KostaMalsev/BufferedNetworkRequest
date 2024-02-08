@@ -49,6 +49,8 @@ async function main() {
         
         status('progress (bytes): ' + loaded);
         
+        console.log('update');
+        
         
         // should reparse entire string until last parse index and compare the changes
         const string = new TextDecoder().decode(value);
@@ -57,16 +59,20 @@ async function main() {
         
         console.log(validData);
         
-        
-        //progress({loaded, total})
+                
         controller.enqueue(value);
       }
       controller.close();
     },
   }));
-  //const blob = await res.blob();
-  status('download completed')
-  //document.getElementById('img').src = URL.createObjectURL(blob);
+  
+  let resp = await res.text();
+  resp = JSON.parse(resp);
+  
+  console.log('completed', resp);
+  
+  status('download completed');
+
 }
 
 main();
