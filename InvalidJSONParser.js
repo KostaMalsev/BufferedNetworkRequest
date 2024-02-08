@@ -65,7 +65,7 @@ class InvalidJSONParser {
     }
     
     
-    let validData = '';
+    let validData;
     
     if (validStr) {
       
