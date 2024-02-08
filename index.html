@@ -44,7 +44,15 @@ async function main() {
         const {done, value} = await reader.read();
         if (done) break;
         loaded += value.byteLength;
-        status(loaded);
+        
+        status('progress (bytes):', loaded);
+        
+        
+        const string = new TextDecoder().decode(value);
+        
+        console.log(string);
+        
+        
         //progress({loaded, total})
         controller.enqueue(value);
       }
