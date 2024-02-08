@@ -41,10 +41,6 @@ class InvalidJSONParser {
       // get the string up to the last valid index
       validStr = str.slice(0, (lastValidIndex + 1));
       
-    } else {
-      
-      lastValidIndex = (str.length - 1);
-      
     }
     
     
@@ -77,7 +73,7 @@ class InvalidJSONParser {
       
     }
     
-    return { validData, lastValidIndex };
+    return validData;
     
   }
   
