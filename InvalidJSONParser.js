@@ -6,7 +6,7 @@ class InvalidJSONParser {
   parse(str) {
     
     let objNestingCounter = 0;
-    let lastValidIndex = 0;
+    let lastValidIndex;
     
     for (let i = 0; i < str.length; i++) {
       
@@ -18,6 +18,10 @@ class InvalidJSONParser {
             i !== 0) {
           
           lastValidIndex = (i - 1);
+          
+        } else {
+          
+          lastValidIndex = 0;
           
         }
         
