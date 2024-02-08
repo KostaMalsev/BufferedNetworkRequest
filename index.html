@@ -11,6 +11,9 @@ body {
 
 <script src="invalidJSONparser.js"></script>
 
+<!-- debug -->
+<script src="realData.js"></script>
+
 <script>
 
 const elStatus = document.getElementById('status');
@@ -24,9 +27,7 @@ function progress({loaded, total}) {
 }
 
 async function main() {
-  status('downloading with fetch()...');
-  
-  // fetch('https://fetch-progress.anthum.com/30kbps/images/sunrise-baseline.jpg');
+  status('downloading...');
   
   const response = await fetch("https://api.github.com/user/repos?visibility=all&sort=updated&per_page=100&page=1", {
     "headers": {
@@ -35,8 +36,6 @@ async function main() {
     "method": "GET"
   });
   
-  const contentLength = response.headers.get('content-length');
-  const total = parseInt(contentLength, 10);
   let loaded = 0;
 
   let respText = '';
@@ -60,24 +59,40 @@ async function main() {
           // should reparse entire string until last parse index and compare the changes
           const string = new TextDecoder().decode(value);
           
+          respText += string;
           
-          console.group('value');
+          
+          console.groupCollapsed('value');
           console.log(string);
           console.groupEnd();
           
           
-          const { validData, lastValidIndex } = InvalidJSONParser.parse(string);
+          const { validData, lastValidIndex } = InvalidJSONParser.parse(respText);
           
-          console.log(validData);
+          console.log('validData', validData, 'lastValidIndex', lastValidIndex);
           
           
-          respText += string;
+          // @@debug
+          
+          const validDataArrLength = validData.length;
+          
+          const realDataArrSlice = realData.slice(0, validDataArrLength);
+          
+          const realStr = JSON.stringify(realDataArrSlice),
+                validStr = JSON.stringify(validData);
+          
+          const doesDataMatch = (realStr === validStr);
+          
+          console.log('doesDataMatch?', doesDataMatch);
+          
           
           controller.enqueue(value);
           
         } else {
           
-          console.log('resp', JSON.parse(respText));
+          const resp = JSON.parse(respText);
+  
+          console.log('resp', resp);
           
           break;
           
@@ -87,13 +102,6 @@ async function main() {
       controller.close();
     },
   }));
-  
-  //console.log('resp', respText);
-  //const resp = JSON.parse(respText);
-  
-  //const resp = respText;
-  
-  //console.log('completed', resp);
   
   status('download completed');
 
