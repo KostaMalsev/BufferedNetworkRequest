@@ -93,7 +93,7 @@ bufferedNetworkRequest(request, (validData, done) => {
     
     const totalRequestTime = currTime - startTime;
     
-    const deltaPercent = percentage(deltaTime, totalRequestTime);
+    let deltaPercent = percentage(deltaTime, totalRequestTime);
     deltaPercent = +deltaPercent.toFixed(2);
     
     elStatus.innerHTML += '<h3>done. (loaded '+ lastValidDataArrLength +' objects)</h3><h1>perf. delta: ' + deltaPercent + '%</h1>';
