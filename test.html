@@ -36,14 +36,17 @@ bufferedNetworkRequest(request, (validData, done) => {
     
     const currTime = performance.now();
     
-    const deltaTime = firstLoadTime - startTime;
+    const firstLoadDelta = firstLoadTime - startTime;
     
     const totalRequestTime = currTime - startTime;
     
-    let deltaPercent = 100 - percentage(deltaTime, totalRequestTime);
+    let deltaPercent = 100 - percentage(firstLoadDelta, totalRequestTime);
     deltaPercent = +deltaPercent.toFixed(2);
     
-    statusEl.innerHTML += '<h3>done. (loaded '+ lastValidDataArrLength +' objects)</h3><h1>perf. delta: ' + deltaPercent + '%</h1>';
+    let deltaTime = currTime - firstLoadTime;
+    deltaTime = +deltaTime.toFixed(2);
+    
+    statusEl.innerHTML += '<h3>done. (loaded '+ lastValidDataArrLength +' objects)</h3><h1>perf. delta: ' + deltaPercent + '% ('+ deltaTime +'ms)</h1>';
     
     document.body.scrollTo(0, document.body.scrollHeight);
     
