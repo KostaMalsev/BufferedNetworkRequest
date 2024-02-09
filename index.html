@@ -4,7 +4,7 @@ body {
 }
 </style>
 
-<div id="status"><h3>Repos</h3></div>
+<div id="status"><h5>Fetching...</h5></div>
 
 
 <script src="InvalidJSONParser.js"></script>
@@ -44,8 +44,6 @@ async function bufferedNetworkRequest(request, updateCallback) {
         } else {
           
           updateCallback(null, done);
-          
-          // console.log('fetch successful!');
           
           break;
           
@@ -92,7 +90,9 @@ bufferedNetworkRequest(request, (validData, done) => {
     let deltaTime = firstLoadTime - currTime;
     deltaTime = +deltaTime.toFixed(2);
     
-    elStatus.innerHTML += '<h1>perf. improvement: ' + deltaTime + 'ms</b>';
+    elStatus.innerHTML += '<h1>perf. delta: ' + deltaTime + 'ms</b>';
+    
+    document.body.scrollY = document.body.scrollHeight;
     
     return;
     
@@ -143,6 +143,9 @@ bufferedNetworkRequest(request, (validData, done) => {
   
   
   debugLogs(validData);
+  
+  
+  document.body.scrollY = document.body.scrollHeight;
   
 });
 
