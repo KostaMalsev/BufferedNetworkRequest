@@ -73,6 +73,9 @@ const request = fetch('https://api.github.com/user/repos?visibility=all&sort=pus
 });
 
 
+// @@debug
+let lastTime = performance.now();
+
 bufferedNetworkRequest(request, (validData) => {
 
   // @@todo compare the changes in validData and only add new data to DOM
@@ -92,7 +95,18 @@ bufferedNetworkRequest(request, (validData) => {
   elStatus.innerHTML = out;
   
   
+  
   // @@debug
+  
+  const currTime = performance.now();
+  
+  const deltaTime = currTime - lastTime;
+  
+  elStatus.innerHTML += '<b>' + deltaTime + 'ms</b>';
+  
+  lastTime = performance.now();
+  
+  
   debugLogs(validData);
   
 });
