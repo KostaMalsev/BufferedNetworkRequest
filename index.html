@@ -89,7 +89,8 @@ bufferedNetworkRequest(request, (validData, done) => {
     
     const currTime = performance.now();
     
-    const deltaTime = firstLoadTime - currTime;
+    let deltaTime = firstLoadTime - currTime;
+    deltaTime = +deltaTime.toFixed(2);
     
     elStatus.innerHTML += '<h1>perf. improvement: ' + deltaTime + 'ms</b>';
     
