@@ -33,9 +33,6 @@ async function bufferedNetworkRequest(updateCallback) {
   });
 
   let respText = '';
-  
-  // @@debug
-  let loadedBytes = 0;
 
   const res = new Response(new ReadableStream({
     async start(controller) {
@@ -80,6 +77,11 @@ async function bufferedNetworkRequest(updateCallback) {
   }));
 
 }
+
+
+
+// @@debug
+let loadedBytes = 0;
 
 bufferedNetworkRequest((validData, rawValue) => {
 
