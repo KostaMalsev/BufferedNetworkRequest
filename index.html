@@ -19,7 +19,7 @@ function status(text) {
   elStatus.innerHTML = text;
 }
 
-async function main() {
+async function bufferedNetworkRequest(updateCallback) {
   
   status('connecting to server...');
   
@@ -46,15 +46,6 @@ async function main() {
         
         if (!done) {
           
-          // @@debug
-          
-          console.group('update');
-          
-          loadedBytes += value.byteLength;
-          
-          status('loaded bytes: ' + loadedBytes);
-          
-          
           const string = new TextDecoder().decode(value);
           
           respText += string;
@@ -67,33 +58,17 @@ async function main() {
           // @@note validData can be null
           
           
-          // @@debug
-
-          console.log('validData', validData);
-
-          const validDataArrLength = validData.length;
-          
-          const realDataArrSlice = realData.slice(0, validDataArrLength);
-          
-          const realStr = JSON.stringify(realDataArrSlice),
-                validStr = JSON.stringify(validData);
-          
-          const doesDataMatch = (realStr === validStr);
-          
-          console.log('doesDataMatch?', doesDataMatch);
-
-          console.groupEnd('update');
-
-          
-          controller.enqueue(value);
+          updateCallback(validData, value);
           
         } else {
           
+          /*
           const resp = JSON.parse(respText);
   
           console.log('fetch successful. resp:', resp);
           
           status('fetch successful!');
+          */
           
           break;
           
@@ -106,6 +81,33 @@ async function main() {
 
 }
 
-main();
+bufferedNetworkRequest((validData, rawValue) => {
+
+  // @@debug
+  
+  console.group('update');
+  
+  loadedBytes += rawValue.byteLength;
+  
+  status('loaded bytes: ' + loadedBytes);
+  
+  // @@debug
+
+  console.log('validData', validData);
+
+  const validDataArrLength = validData.length;
+  
+  const realDataArrSlice = realData.slice(0, validDataArrLength);
+  
+  const realStr = JSON.stringify(realDataArrSlice),
+        validStr = JSON.stringify(validData);
+  
+  const doesDataMatch = (realStr === validStr);
+  
+  console.log('doesDataMatch?', doesDataMatch);
+
+  console.groupEnd('update');
+  
+});
 
 </script>
