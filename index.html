@@ -90,7 +90,7 @@ bufferedNetworkRequest(request, (validData, done) => {
     let deltaTime = firstLoadTime - currTime;
     deltaTime = +deltaTime.toFixed(2);
     
-    const deltaPercent = currTime / deltaTime;
+    const deltaPercent = percentage(deltaTime, currTime);
     
     elStatus.innerHTML += '<h3>done. (loaded '+ lastValidDataArrLength +' objects)</h3><h1>perf. delta: ' + deltaTime + '%</h1>';
     
@@ -177,6 +177,10 @@ function debugLogs(validData) {
 
   console.groupEnd('update');
   
+}
+
+function percentage(partialValue, totalValue) {
+   return (100 * partialValue) / totalValue;
 }
 
 </script>
