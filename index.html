@@ -96,7 +96,7 @@ bufferedNetworkRequest(request, (validData, done) => {
     const deltaPercent = percentage(deltaTime, totalRequestTime);
     deltaPercent = +deltaPercent.toFixed(2);
     
-    elStatus.innerHTML += '<h3>done. (loaded '+ lastValidDataArrLength +' objects)</h3><h1>perf. delta: ' + deltaTime + '%</h1>';
+    elStatus.innerHTML += '<h3>done. (loaded '+ lastValidDataArrLength +' objects)</h3><h1>perf. delta: ' + deltaPercent + '%</h1>';
     
     document.body.scrollTo(0, document.body.scrollHeight);
     
