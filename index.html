@@ -114,9 +114,7 @@ bufferedNetworkRequest(request, (validData) => {
   deltaTime = +deltaTime.toFixed(2);
   
   elStatus.innerHTML += '<b>loaded ' + validData.length + ' result(s) in ' + deltaTime + 'ms</b>';
-  
-  lastTime = performance.now();
-  
+    
   
   debugLogs(validData);
   
