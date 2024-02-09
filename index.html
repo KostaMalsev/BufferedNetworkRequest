@@ -4,7 +4,7 @@ body {
 }
 </style>
 
-<div id="status"><i>loading...</i></div>
+<div id="status"><i>Repos</i></div>
 
 
 <script src="InvalidJSONParser.js"></script>
@@ -67,7 +67,8 @@ const elStatus = document.getElementById('status');
 
 const request = fetch('https://api.github.com/user/repos?visibility=all&sort=pushed&per_page=100&page=1', {
   headers: {
-    authorization: 'token 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'
+    //authorization: 'token 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'
+    authorization: 'token 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'
   },
   method: 'GET'
 });
