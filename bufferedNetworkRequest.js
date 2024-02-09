@@ -15,26 +15,26 @@ async function bufferedNetworkRequest(request, updateCallback) {
         
         const {done, value} = await reader.read();
         
-        if (!done) {
-          
-          const string = new TextDecoder().decode(value);
-          
-          respText += string;
-          
-          
-          const parser = bufferedNetworkRequest.InvalidJSONParser;
-          
-          const validData = parser.parse(respText);
-          
-          updateCallback(validData);
-          
-        } else {
+        
+        if (done) {
           
           updateCallback(null, done);
           
           break;
           
         }
+        
+        
+        const string = new TextDecoder().decode(value);
+        
+        respText += string;
+        
+        
+        const parser = bufferedNetworkRequest.InvalidJSONParser;
+        
+        const validData = parser.parse(respText);
+        
+        updateCallback(validData);
         
       }
       
