@@ -44,10 +44,10 @@ bufferedNetworkRequest(request, (validData, done) => {
     let deltaPercent = percentage(deltaTime, totalRequestTime);
     
     
-    deltaPercent = +deltaPercent.toFixed(2) * -1;
+    deltaPercent = +deltaPercent.toFixed(2);
     
     deltaTime = deltaTime / 1000; // [ms] to [seconds]
-    deltaTime = +deltaTime.toFixed(2) * -1;
+    deltaTime = +deltaTime.toFixed(2);
     
     totalRequestTime = totalRequestTime / 1000; // [ms] to [seconds]
     totalRequestTime = +totalRequestTime.toFixed(2);
