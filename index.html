@@ -90,7 +90,7 @@ bufferedNetworkRequest(request, (validData, done) => {
     let deltaTime = firstLoadTime - currTime;
     deltaTime = +deltaTime.toFixed(2);
     
-    elStatus.innerHTML += '<h1>perf. delta: ' + deltaTime + 'ms</b>';
+    elStatus.innerHTML += '<h1>perf. delta: ' + deltaTime + 'ms ('+ lastValidDataArrLength +' objects)</b>';
     
     document.body.scrollTo(0, document.body.scrollHeight);
     
@@ -137,7 +137,7 @@ bufferedNetworkRequest(request, (validData, done) => {
   let deltaTime = currTime - lastTime;
   deltaTime = +deltaTime.toFixed(2);
   
-  elStatus.innerHTML += '<h2>loaded +' + validData.length + ' in +' + deltaTime + 'ms</h2>';
+  elStatus.innerHTML += '<h2>loaded ' + validData.length + ' in +' + deltaTime + 'ms</h2>';
   
   lastTime = performance.now();
   
