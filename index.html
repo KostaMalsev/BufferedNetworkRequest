@@ -74,7 +74,7 @@ const request = fetch('https://api.github.com/user/repos?visibility=all&sort=pus
 
 
 // @@debug
-const lastTime = performance.now();
+let lastTime = performance.now();
 
 let lastValidDataArrLength = 0;
 
@@ -113,8 +113,10 @@ bufferedNetworkRequest(request, (validData) => {
   let deltaTime = currTime - lastTime;
   deltaTime = +deltaTime.toFixed(2);
   
-  elStatus.innerHTML += '<b>loaded ' + validData.length + ' result(s) in ' + deltaTime + 'ms</b>';
-    
+  elStatus.innerHTML += '<b>loaded ' + validData.length + ' result(s) in +' + deltaTime + 'ms</b>';
+  
+  lastTime = performance.now();
+  
   
   debugLogs(validData);
   
