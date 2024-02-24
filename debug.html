@@ -8,7 +8,7 @@ body {
 <div class="status"><h5>Fetching...</h5></div>
 
 
-<script src="bufferedNetworkRequest.js"></script>
+<script src="BufferedNetworkRequest.js"></script>
 <script src="InvalidJSONParser.js"></script>
 
 <script>
@@ -31,7 +31,7 @@ let firstLoadTime;
 
 let lastValidDataArrLength = 0;
 
-bufferedNetworkRequest(request, (validData, done) => {
+BufferedNetworkRequest(request, (validData, done) => {
 
   if (done) {
     
