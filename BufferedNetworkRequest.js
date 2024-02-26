@@ -92,7 +92,7 @@ async function BufferedNetworkRequest(request, options = {}) {
       
     }
     
-    updateCb(resp);
+    doneCb(resp);
     
   }
   
