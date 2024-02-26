@@ -10,7 +10,7 @@
  * request.ondone = (resp) => {}
  *
  * Options:
- * - json [boolean]: parse response data as an array of JSON objects. false by default.
+ * - json [boolean]: Parse response data as an array of JSON objects. 'false' by default.
  *
  */
 
