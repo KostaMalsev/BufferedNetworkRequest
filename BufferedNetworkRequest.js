@@ -5,7 +5,7 @@ async function BufferedNetworkRequest(request, options = {}) {
   
   let respText = '';
   
-  const res = new Response(new ReadableStream({
+  new Response(new ReadableStream({
     
     async start(controller) {
       
@@ -72,11 +72,11 @@ async function BufferedNetworkRequest(request, options = {}) {
     
     if (options.json) {
       
-      return parseInvalidJSON(respText);
+      data = parseInvalidJSON(respText);
       
     }
     
-    return data;
+    updateCb(data);
     
   }
   
@@ -84,13 +84,15 @@ async function BufferedNetworkRequest(request, options = {}) {
     
     if (!doneCb) return;
     
+    let resp = respText;
+    
     if (options.json) {
       
-      return JSON.parse(respText);
+      resp = JSON.parse(respText);
       
     }
     
-    return respText;
+    updateCb(resp);
     
   }
   
