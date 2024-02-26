@@ -33,8 +33,6 @@ let request = fetch('https://api.github.com/user/repos?visibility=all&sort=pushe
 });
 
 
-let lastDataLen = 0;
-
 request = BufferedNetworkRequest(request, { json: true });
 
 request.onupdate = (data) => {
