@@ -65,7 +65,7 @@ BufferedNetworkRequest.InvalidJSONParser = new class {
     }
     
     
-    let validData;
+    let validData = [];
     
     if (validStr) {
       
