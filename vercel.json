@@ -1,1 +1,10 @@
-{ "cleanUrls": true }
+{
+  "cleanUrls": true,
+  "redirects": [
+    {
+      "source": "/",
+      "destination": "https://cde.run/benhatsor/bufferednetworkrequest/README.md",
+      "permanent": true
+    }
+  ]
+}
