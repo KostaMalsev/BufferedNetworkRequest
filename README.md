@@ -2,8 +2,8 @@
 
 Significantly faster time-to-first-update for network requests. **~30% time saved** on slow 3G.
 
-- [Demo](https://bufferednetworkrequest.vercel.app/demos/demo.html)
-- [Debug](https://bufferednetworkrequest.vercel.app/demos/debug.html)
+- [Demo](https://bufferednetworkrequest.vercel.app/demos/demo)
+- [Debug](https://bufferednetworkrequest.vercel.app/demos/debug)
 
 ## Usage
 
