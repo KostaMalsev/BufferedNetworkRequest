@@ -1,19 +1,4 @@
 
-/*
- * BufferedNetworkRequest
- *
- * Usage:
- *
- * const request = await BufferedNetworkRequest(fetchRequest, options);
- *
- * request.onupdate = (newData) => {}
- * request.ondone = (resp) => {}
- *
- * Options:
- * - json [boolean]: Parse response data as an array of JSON objects. 'false' by default.
- *
- */
-
 async function BufferedNetworkRequest(request, options = {}) {
   
   const response = await request;
