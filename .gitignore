@@ -1,2 +1,4 @@
-
-
+# don't commit stuff from workflow 'npm install'
+node_modules
+package-lock.json
+package.json
