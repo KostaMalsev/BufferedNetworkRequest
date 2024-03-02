@@ -13,7 +13,7 @@ async function main() {
   request = await BufferedNetworkRequest(request, { json: true });
   
   
-  request.onupdate = (data) => {
+  request.ondata = (data) => {
     
     let out = '';
   
