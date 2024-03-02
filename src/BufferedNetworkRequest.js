@@ -34,7 +34,7 @@ async function BufferedNetworkRequest(request, options = {}) {
         respText += string;
         
         
-        callUpdateCb(string);
+        callDataCb(string);
         
       }
       
@@ -69,11 +69,11 @@ async function BufferedNetworkRequest(request, options = {}) {
   }
   
   
-  let updateCb, doneCb;
+  let dataCb, doneCb;
   
-  function callUpdateCb(data) {
+  function callDataCb(data) {
     
-    if (!updateCb) return;
+    if (!dataCb) return;
     
     if (options.json) {
       
@@ -81,7 +81,7 @@ async function BufferedNetworkRequest(request, options = {}) {
       
     }
     
-    updateCb(data);
+    dataCb(data);
     
   }
   
@@ -104,9 +104,9 @@ async function BufferedNetworkRequest(request, options = {}) {
   
   const eventObj = {
     
-    set onupdate(value) {
+    set ondata(value) {
       
-      updateCb = value;
+      dataCb = value;
       
     },
     
