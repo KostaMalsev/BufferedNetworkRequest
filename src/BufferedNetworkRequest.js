@@ -89,7 +89,15 @@ async function BufferedNetworkRequest(request, options = {}) {
     
     if (!doneCb) return;
     
-    doneCb(response);
+    let data = respText;
+
+    if (options.json) {
+
+      data = JSON.parse(respText);
+
+    }
+    
+    doneCb({ response, data });
     
   }
   
