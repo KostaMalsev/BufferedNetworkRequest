@@ -15,6 +15,8 @@ async function BufferedNetworkRequest(request, options = {}) {
       
       const reader = response.body.getReader();
       
+      const decoder = new TextDecoder();
+      
       for (;;) {
         
         const {done, value} = await reader.read();
@@ -29,7 +31,7 @@ async function BufferedNetworkRequest(request, options = {}) {
         }
         
         
-        const string = new TextDecoder().decode(value);
+        const string = decoder.decode(value);
         
         respText += string;
         
