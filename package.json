@@ -4,6 +4,22 @@
         "build": "rollup -c && rm -r dist/dec",
         "demos:build": "(cd demos && rollup -c)"
     },
+    "name": "bufferednetworkrequest",
+    "version": "1.0.0",
+    "description": "Significantly faster time-to-first-update for network requests.",
+    "main": "dist/main.js",
+    "types": "dist/main.d.ts",
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/benhatsor/BufferedNetworkRequest.git"
+    },
+    "keywords": ["fetch", "network", "response", "stream", "request", "buffer"],
+    "author": "benhatsor",
+    "license": "MIT",
+    "bugs": {
+        "url": "https://github.com/benhatsor/BufferedNetworkRequest/issues"
+    },
+    "homepage": "https://github.com/benhatsor/BufferedNetworkRequest#readme",
     "devDependencies": {
         "@rollup/plugin-terser": "^1.0.0",
         "@rollup/plugin-typescript": "^12.3.0",

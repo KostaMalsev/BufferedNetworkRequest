@@ -102,4 +102,4 @@ class JSONObjectStream extends TextStreamInterface {
 }
 
 export { InvalidJSONParser$1 as InvalidJSONParser, JSONObjectStream, TextStream, TextStreamInterface };
-//# sourceMappingURL=index.js.map
+//# sourceMappingURL=main.js.map

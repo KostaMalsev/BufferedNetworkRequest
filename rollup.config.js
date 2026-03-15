@@ -10,7 +10,7 @@ import MagicString from 'magic-string';
 export default [
   {
     input: {
-      'index.min.js': 'src/index.ts'
+      'main.min.js': 'src/index.ts'
     },
     output: {
       dir: 'dist',
@@ -25,7 +25,7 @@ export default [
     input: 'src/index.ts',
     output: [
       {
-        file: 'dist/index.js',
+        file: 'dist/main.js',
         format: 'es',
         sourcemap: true
       }
@@ -37,7 +37,7 @@ export default [
   {
     input: 'dist/dec/index.d.ts',
     output: [{
-      file: 'dist/index.d.ts',
+      file: 'dist/main.d.ts',
       format: 'es'
     }],
     plugins: [dts()]
