@@ -3,26 +3,56 @@
 Significantly faster time-to-first-update for network requests. **~30% time saved** on slow 3G.
 
 - [Demo](https://bufferednetworkrequest.vercel.app/demos/demo)
-- [Debug](https://bufferednetworkrequest.vercel.app/demos/debug)
+- [Benchmark Demo](https://bufferednetworkrequest.vercel.app/demos/debug)
 
-## Setup
+## Installation
 
-Put this HTML in your `<body>`:
-
-```HTML
-<script src="dist/BufferedNetworkRequest.js"></script>
+```sh
+npm install bufferednetworkrequest
 ```
 
 ## Usage
 
-```JS
-const fetchRequest = fetch(url);
+### Text
 
-const request = await BufferedNetworkRequest(fetchRequest, options);
+```js
+import { TextStream } from 'bufferednetworkrequest'
 
-request.ondata = (data) => {};
-request.ondone = ({ response, data }) => {};
+const response = await fetch(url)
+
+if (!response.ok) throw Error(`Request failed: ${response.status}`)
+if (!response.body) throw Error(`Response is empty.`)
+
+const stream = new TextStream(response.body)
+
+let text = ''
+
+for await (const textChunk of stream) {
+    // do something with the chunk
+    text += textChunk
+}
+
+console.log(text)
 ```
 
-### Options
-- **`json` [Boolean]**: Parse response data as an array of JSON objects. `false` by default.
+### JSON
+
+```js
+import { JSONObjectStream } from 'bufferednetworkrequest'
+
+const response = await fetch('https://jsonplaceholder.typicode.com/todos')
+
+if (!response.ok) throw Error(`Request failed: ${response.status}`)
+if (!response.body) throw Error(`Response is empty.`)
+
+const stream = new JSONObjectStream(response.body)
+
+let respObjects = []
+
+for await (const objects of stream) {
+    // do something with the chunk
+    respObject.push(...objects)
+}
+
+console.log(respObjects)
+```

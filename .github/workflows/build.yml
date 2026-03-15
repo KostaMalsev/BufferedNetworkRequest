@@ -8,8 +8,7 @@ on:
     
     # see: https://docs.github.com/en/actions/using-workflows/triggering-a-workflow#example-including-paths
     paths:
-      - 'src/**.js'
-      - 'src/.scriptorder'
+      - 'src/**'
       - './build.js'
       
   workflow_dispatch:
@@ -21,20 +20,18 @@ jobs:
 
     strategy:
       matrix:
-        node-version: [18.x]
+        node-version: [26.x]
 
     steps:
     
-    - uses: actions/checkout@v4
-      with:
-        ref: ${{ github.head_ref }}
+    - uses: actions/checkout@v6
         
     - name: Build
       run: |
-          npm install terser --save-dev
-          node ".github/workflows/build.js"
+          npm install
+          npm run build
     
-    # save commits to GitHub
-    - uses: stefanzweifel/git-auto-commit-action@v5
+    # push changes to GitHub
+    - uses: stefanzweifel/git-auto-commit-action@v7
       with:
         commit_message: 'Build'

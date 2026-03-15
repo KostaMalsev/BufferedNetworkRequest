@@ -1,0 +1,10 @@
+{
+  "extends": "./tsconfig.default.json",
+
+  "files": ["src/index.ts"],
+  "compilerOptions": {
+    "rootDir": "src",
+    "outDir": "dist",
+    "module": "esnext"
+  }
+}
