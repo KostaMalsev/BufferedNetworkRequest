@@ -2,13 +2,22 @@
 
 Stream JSON and text requests as they arrive. **~30% faster** [First Contentful Paint][1] on slow 3G.
 
+[![NPM version](https://img.shields.io/npm/v/bufferednetworkrequest)](https://www.npmjs.com/package/bufferednetworkrequest) [![Minified size](https://img.shields.io/github/size/benhatsor/BufferedNetworkRequest/dist/index.min.js)](/dist/index.min.js) [![License](https://img.shields.io/github/license/benhatsor/BufferedNetworkRequest)](/LICENSE) 
+
 - [Demo](https://bufferednetworkrequest.vercel.app/demos/demo)
 - [Benchmark Demo](https://bufferednetworkrequest.vercel.app/demos/bench)
 
 ## Installation
 
+### NPM
 ```sh
 npm install bufferednetworkrequest
+```
+
+### CDN
+Import the module directly:
+```js
+import * as BufferedNetworkRequest from 'https://unpkg.com/bufferednetworkrequest'
 ```
 
 ## Usage
@@ -18,7 +27,7 @@ npm install bufferednetworkrequest
 ```js
 import { JSONObjectStream } from 'bufferednetworkrequest'
 
-const response = await fetch('https://api.github.com/users/github/repos?per_page=100')
+const response = await fetch('https://jsonplaceholder.typicode.com/comments')
 
 if (!response.ok) throw Error(`Request failed: Code ${response.status}`)
 if (!response.body) throw Error(`Response was empty.`)
@@ -56,5 +65,30 @@ for await (const textChunk of stream) {
 
 console.log(text)
 ```
+
+## Architecture
+
+The library uses the Web Streams API. `TextStreamInterface<ChunkType>` is an abstract base class that pipes a `Response.body` through a `TextDecoderStream` and exposes an async iterator. Subclasses implement `processChunk()` to transform each text chunk:
+
+- **TextStream** — Returns raw text chunks as-is
+- **JSONObjectStream** — Accumulates chunks into a JSON string, uses `InvalidJSONParser` to extract complete objects, and yields only newly-completed objects (no duplicates across iterations)
+- **InvalidJSONParser** — Parses incomplete/truncated JSON by tracking brace nesting to find the last fully-closed object, and auto-closing unclosed top-level arrays
+
+## Developing
+
+```sh
+npm install
+npm run test
+```
+
+Then:
+```sh
+npm run build
+```
+
+## License
+
+[MIT](/LICENSE)
+
 
 [1]: https://web.dev/articles/fcp

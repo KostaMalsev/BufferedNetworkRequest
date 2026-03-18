@@ -1,7 +1,7 @@
 import { JSONObjectStream } from "bufferednetworkrequest";
 //#region demo/index.ts
 const statusEl = document.querySelector(".status");
-const response = await fetch("https://api.github.com/users/github/repos?per_page=100", { cache: "no-store" });
+const response = await fetch("https://jsonplaceholder.typicode.com/comments", { cache: "no-store" });
 if (!response.ok || !response.body) {
 	statusEl.textContent = `An error occured while fetching the response.`;
 	throw Error;

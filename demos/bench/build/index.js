@@ -4,7 +4,7 @@ const statusEl = document.querySelector(".status");
 const startTime = performance.now();
 let prevTime = startTime;
 let firstLoadTime = null;
-const response = await fetch("https://api.github.com/users/github/repos?per_page=100", { cache: "no-store" });
+const response = await fetch("https://jsonplaceholder.typicode.com/photos", { cache: "no-store" });
 if (!response.ok || !response.body) {
 	statusEl.textContent = `An error occured while fetching the response.`;
 	throw Error;

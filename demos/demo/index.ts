@@ -5,7 +5,7 @@ import { JSONObjectStream } from 'bufferednetworkrequest'
 const statusEl = document.querySelector('.status')!
 
 
-const response = await fetch('https://api.github.com/users/github/repos?per_page=100', {
+const response = await fetch('https://jsonplaceholder.typicode.com/comments', {
     cache: 'no-store'
 })
 
