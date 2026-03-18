@@ -22,26 +22,22 @@ if (!response.ok || !response.body) {
 
 const stream = new JSONObjectStream(response.body)
 
-interface Repository { name: string }
-
-let respRepos: Repository[] = []
+let respObjects: object[] = []
 
 for await (const objects of stream) {
 
-    const repos = objects as Repository[]
+    respObjects.push(...objects)
 
-    respRepos.push(...repos)
+    const objectElements = objects.map(object => {
 
-    const repoElements = repos.map(repo => {
-
-        const el = document.createElement('p')
-        el.textContent = repo.name
+        const el = document.createElement('code')
+        el.textContent = JSON.stringify(object)
 
         return el
 
     })
 
-    statusEl.append(...repoElements)
+    statusEl.append(...objectElements)
 
 
     const currTime = performance.now()
@@ -49,9 +45,8 @@ for await (const objects of stream) {
 
     prevTime = currTime
 
-    if (firstLoadTime === null) {
-        firstLoadTime = currTime
-    }
+    firstLoadTime ??= currTime
+
 
     const headingEl = document.createElement('h2')
     headingEl.textContent = `loaded ${objects.length} in +${round(deltaTime, 2)}ms`
@@ -67,19 +62,19 @@ for await (const objects of stream) {
 const currTime = performance.now()
 
 let totalRequestTime = currTime - startTime
+let timeSaved = currTime - firstLoadTime!
 
-let timeToFirstLoad = totalRequestTime - (firstLoadTime ?? 0)
-let improvementPercent = percentage(timeToFirstLoad, totalRequestTime)
+let improvementPercent = percentage(timeSaved, totalRequestTime)
 
 totalRequestTime = formatTime(totalRequestTime)
-timeToFirstLoad = formatTime(timeToFirstLoad)
+timeSaved = formatTime(timeSaved)
 improvementPercent = round(improvementPercent, 2)
 
 const subHeadingEl = document.createElement('h3')
-subHeadingEl.textContent = `done. (loaded ${respRepos.length} objects)`
+subHeadingEl.textContent = `done. (loaded ${respObjects.length} objects)`
 
 const headingEl = document.createElement('h1')
-headingEl.textContent = `time saved: ${improvementPercent}% (${timeToFirstLoad}s of ${totalRequestTime}s)`
+headingEl.textContent = `time saved: ${improvementPercent}% (${timeSaved}s of ${totalRequestTime}s)`
 
 statusEl.append(subHeadingEl, headingEl)
 

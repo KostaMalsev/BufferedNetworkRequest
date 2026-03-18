@@ -10,35 +10,35 @@ if (!response.ok || !response.body) {
 	throw Error;
 }
 const stream = new JSONObjectStream(response.body);
-let respRepos = [];
+let respObjects = [];
 for await (const objects of stream) {
-	const repos = objects;
-	respRepos.push(...repos);
-	const repoElements = repos.map((repo) => {
-		const el = document.createElement("p");
-		el.textContent = repo.name;
+	respObjects.push(...objects);
+	const objectElements = objects.map((object) => {
+		const el = document.createElement("code");
+		el.textContent = JSON.stringify(object);
 		return el;
 	});
-	statusEl.append(...repoElements);
+	statusEl.append(...objectElements);
 	const currTime = performance.now();
 	const deltaTime = currTime - prevTime;
 	prevTime = currTime;
-	if (firstLoadTime === null) firstLoadTime = currTime;
+	firstLoadTime ??= currTime;
 	const headingEl = document.createElement("h2");
 	headingEl.textContent = `loaded ${objects.length} in +${round(deltaTime, 2)}ms`;
 	statusEl.appendChild(headingEl);
 	scrollToBottom();
 }
-let totalRequestTime = performance.now() - startTime;
-let timeToFirstLoad = totalRequestTime - (firstLoadTime ?? 0);
-let improvementPercent = percentage(timeToFirstLoad, totalRequestTime);
+const currTime = performance.now();
+let totalRequestTime = currTime - startTime;
+let timeSaved = currTime - firstLoadTime;
+let improvementPercent = percentage(timeSaved, totalRequestTime);
 totalRequestTime = formatTime(totalRequestTime);
-timeToFirstLoad = formatTime(timeToFirstLoad);
+timeSaved = formatTime(timeSaved);
 improvementPercent = round(improvementPercent, 2);
 const subHeadingEl = document.createElement("h3");
-subHeadingEl.textContent = `done. (loaded ${respRepos.length} objects)`;
+subHeadingEl.textContent = `done. (loaded ${respObjects.length} objects)`;
 const headingEl = document.createElement("h1");
-headingEl.textContent = `time saved: ${improvementPercent}% (${timeToFirstLoad}s of ${totalRequestTime}s)`;
+headingEl.textContent = `time saved: ${improvementPercent}% (${timeSaved}s of ${totalRequestTime}s)`;
 statusEl.append(subHeadingEl, headingEl);
 scrollToBottom();
 console.info("[done] response", response);
