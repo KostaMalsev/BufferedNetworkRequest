@@ -68,7 +68,7 @@ console.log(text)
 
 ## Architecture
 
-The library uses the Web Streams API. `TextStreamInterface<ChunkType>` is an abstract base class that pipes a `Response.body` through a `TextDecoderStream` and exposes an async iterator. Subclasses implement `processChunk()` to transform each text chunk:
+The library uses the [Web Streams API][2]. `TextStreamInterface<ChunkType>` is an abstract base class that pipes a `Response.body` through a `TextDecoderStream` and exposes an async iterator. Subclasses implement `processChunk()` to transform each text chunk:
 
 - **TextStream** — Returns raw text chunks as-is
 - **JSONObjectStream** — Accumulates chunks into a JSON string, uses `InvalidJSONParser` to extract complete objects, and yields only newly-completed objects (no duplicates across iterations)
@@ -92,3 +92,4 @@ npm run build
 
 
 [1]: https://web.dev/articles/fcp
+[2]: https://developer.mozilla.org/en-US/docs/Web/API/Streams_API
