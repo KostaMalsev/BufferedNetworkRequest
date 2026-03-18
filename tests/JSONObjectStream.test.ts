@@ -37,7 +37,7 @@ test('JSONObjectStream: no duplicate objects across chunks', async () => {
 
   const perChunk: object[][] = []
   for await (const objects of stream) {
-    perChunk.push([...objects])
+    perChunk.push(objects)
   }
 
   // First chunk yields object 1, second yields object 2, third yields object 3
@@ -76,7 +76,7 @@ test('JSONObjectStream: skips chunks with no new complete objects', async () => 
 
   const perChunk: object[][] = []
   for await (const objects of stream) {
-    perChunk.push([...objects])
+    perChunk.push(objects)
   }
 
   // Chunk 1: yields {id:1}
