@@ -4,8 +4,8 @@ Stream JSON and text requests as they arrive. **~30% faster** [First Contentful 
 
 [![NPM version](https://img.shields.io/npm/v/bufferednetworkrequest)](https://www.npmjs.com/package/bufferednetworkrequest) [![Minified size](https://img.shields.io/github/size/benhatsor/BufferedNetworkRequest/dist/index.min.js)](/dist/index.min.js) [![License](https://img.shields.io/github/license/benhatsor/BufferedNetworkRequest)](/LICENSE) 
 
-- <a href="https://cde.run/benhatsor/BufferedNetworkRequest/demos/demo/index.html" target="_blank">Demo</a>
-- <a href="https://cde.run/benhatsor/BufferedNetworkRequest/demos/bench/index.html" target="_blank">Benchmark Demo</a>
+- [Demo](https://cde.run/benhatsor/BufferedNetworkRequest/demos/demo/index.html)
+- [Benchmark Demo](https://cde.run/benhatsor/BufferedNetworkRequest/demos/bench/index.html)
 
 ## Installation
 
