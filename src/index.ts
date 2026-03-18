@@ -1,6 +1,6 @@
 /**
  * BufferedNetworkRequest
- * Significantly faster time-to-first-update for network requests.
+ * Stream JSON objects and text requests as they arrive.
  */
 
 export * from './TextStream'
