@@ -22,7 +22,7 @@ import * as BufferedNetworkRequest from 'https://unpkg.com/bufferednetworkreques
 
 ## Usage
 
-### Streaming JSON
+### Streaming JSON objects
 
 ```js
 import { JSONObjectStream } from 'bufferednetworkrequest'
