@@ -1,5 +1,5 @@
 
-import { JSONObjectStream } from '../../dist/main.js'
+import { JSONObjectStream } from '../../dist'
 
 
 const statusEl = document.querySelector('.status')!

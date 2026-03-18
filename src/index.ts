@@ -1,5 +1,5 @@
 /**
- * @module BufferedNetworkRequest
+ * BufferedNetworkRequest
  * Significantly faster time-to-first-update for network requests.
  */
 

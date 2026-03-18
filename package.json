@@ -1,32 +1,45 @@
 {
-    "type": "module",
-    "scripts": {
-        "build": "rollup -c && rm -r dist/dec",
-        "demos:build": "(cd demos && rollup -c)"
-    },
-    "name": "bufferednetworkrequest",
-    "version": "1.0.0",
-    "description": "Significantly faster time-to-first-update for network requests.",
-    "main": "dist/main.js",
-    "types": "dist/main.d.ts",
-    "repository": {
-        "type": "git",
-        "url": "git+https://github.com/benhatsor/BufferedNetworkRequest.git"
-    },
-    "keywords": ["fetch", "network", "response", "stream", "request", "buffer"],
-    "author": "benhatsor",
-    "license": "MIT",
-    "bugs": {
-        "url": "https://github.com/benhatsor/BufferedNetworkRequest/issues"
-    },
-    "homepage": "https://github.com/benhatsor/BufferedNetworkRequest#readme",
-    "devDependencies": {
-        "@rollup/plugin-terser": "^1.0.0",
-        "@rollup/plugin-typescript": "^12.3.0",
-        "magic-string": "^0.30.21",
-        "rollup": "^4.59.0",
-        "rollup-plugin-dts": "^6.4.0",
-        "tslib": "^2.8.1",
-        "typescript": "^5.9.3"
-    }
+  "name": "bufferednetworkrequest",
+  "type": "module",
+  "version": "1.0.0",
+  "description": "Significantly faster time-to-first-update for network requests.",
+  "author": "benhatsor",
+  "license": "MIT",
+  "homepage": "https://github.com/benhatsor/BufferedNetworkRequest#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/benhatsor/BufferedNetworkRequest.git"
+  },
+  "bugs": {
+    "url": "https://github.com/benhatsor/BufferedNetworkRequest/issues"
+  },
+  "keywords": [
+    "fetch",
+    "network",
+    "response",
+    "stream",
+    "request",
+    "buffer"
+  ],
+  "types": "dist/index.d.ts",
+  "exports": {
+    ".": "./dist/index.js",
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "dist",
+    "src"
+  ],
+  "scripts": {
+    "build": "tsdown",
+    "dev": "tsdown --watch",
+    "test": "vitest",
+    "typecheck": "tsc --noEmit",
+    "prepublishOnly": "npm run build"
+  },
+  "devDependencies": {
+    "tsdown": "^0.21.2",
+    "typescript": "^5.9.3",
+    "vitest": "^4.1.0"
+  }
 }
