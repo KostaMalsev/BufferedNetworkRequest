@@ -2,7 +2,7 @@
   "name": "bufferednetworkrequest",
   "type": "module",
   "version": "1.0.1",
-  "description": "Stream JSON and text requests as they arrive.",
+  "description": "Stream JSON objects and text requests as they arrive.",
   "author": "benhatsor",
   "license": "MIT",
   "homepage": "https://github.com/benhatsor/BufferedNetworkRequest#readme",
@@ -19,7 +19,13 @@
     "response",
     "stream",
     "request",
-    "buffer"
+    "buffer",
+    "parser",
+    "object",
+    "json",
+    "typescript",
+    "javascript",
+    "nodejs"
   ],
   "types": "dist/index.d.ts",
   "exports": {
