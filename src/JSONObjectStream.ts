@@ -7,21 +7,21 @@ import InvalidJSONParser, { type ValidJSONObjects } from './InvalidJSONParser'
  */
 export class JSONObjectStream extends TextStreamInterface<ValidJSONObjects> {
 
-    #fullJSONStr = ''
-    #lastValidJSONObjectCount = 0
+    private fullJSONStr = ''
+    private lastValidJSONObjectCount = 0
 
     processChunk(chunk: string) {
 
-        this.#fullJSONStr += chunk
+        this.fullJSONStr += chunk
 
         // get valid JSON objects in full JSON string
         const validJSONObjects = InvalidJSONParser.parse(
-            this.#fullJSONStr
+            this.fullJSONStr
         )
 
         // remove JSON objects we've already validated
         const newValidJSONObjects = validJSONObjects.slice(
-            this.#lastValidJSONObjectCount
+            this.lastValidJSONObjectCount
         )
 
         // if there are no new valid JSON objects, don't send an update
@@ -29,7 +29,7 @@ export class JSONObjectStream extends TextStreamInterface<ValidJSONObjects> {
             return null
         }
 
-        this.#lastValidJSONObjectCount += newValidJSONObjects.length
+        this.lastValidJSONObjectCount += newValidJSONObjects.length
 
         return newValidJSONObjects
 

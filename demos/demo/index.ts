@@ -1,5 +1,5 @@
 
-import { JSONObjectStream } from '../../dist'
+import { JSONObjectStream } from 'bufferednetworkrequest'
 
 
 const statusEl = document.querySelector('.status')!

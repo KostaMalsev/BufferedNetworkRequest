@@ -35,9 +35,11 @@
     "dev": "tsdown --watch",
     "test": "vitest",
     "typecheck": "tsc --noEmit",
-    "prepublishOnly": "npm run build"
+    "prepublishOnly": "npm run build",
+    "demos:build": "tsdown --config demos/tsdown.config.ts"
   },
   "devDependencies": {
+    "@vitest/browser-playwright": "^4.1.0",
     "tsdown": "^0.21.2",
     "typescript": "^5.9.3",
     "vitest": "^4.1.0"

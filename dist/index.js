@@ -8,16 +8,16 @@
 * @template ChunkType The processed chunk type to stream.
 */
 var TextStreamInterface = class {
-	#stream;
+	stream;
 	/**
 	* @param respBody A `Response`'s `body`.
 	* @param textDecoderStream A custom text decoder stream to use.
 	*/
 	constructor(respBody, textDecoderStream = new TextDecoderStream()) {
-		this.#stream = respBody.pipeThrough(textDecoderStream);
+		this.stream = respBody.pipeThrough(textDecoderStream);
 	}
 	async *[Symbol.asyncIterator]() {
-		for await (const chunk of this.#stream) {
+		for await (const chunk of this.stream) {
 			const processedChunk = this.processChunk(chunk);
 			if (processedChunk === null) continue;
 			yield processedChunk;
@@ -71,13 +71,13 @@ var InvalidJSONParser_default = new InvalidJSONParser();
 * Stream JSON objects in chunks from a `Response`.
 */
 var JSONObjectStream = class extends TextStreamInterface {
-	#fullJSONStr = "";
-	#lastValidJSONObjectCount = 0;
+	fullJSONStr = "";
+	lastValidJSONObjectCount = 0;
 	processChunk(chunk) {
-		this.#fullJSONStr += chunk;
-		const newValidJSONObjects = InvalidJSONParser_default.parse(this.#fullJSONStr).slice(this.#lastValidJSONObjectCount);
+		this.fullJSONStr += chunk;
+		const newValidJSONObjects = InvalidJSONParser_default.parse(this.fullJSONStr).slice(this.lastValidJSONObjectCount);
 		if (newValidJSONObjects.length === 0) return null;
-		this.#lastValidJSONObjectCount += newValidJSONObjects.length;
+		this.lastValidJSONObjectCount += newValidJSONObjects.length;
 		return newValidJSONObjects;
 	}
 };

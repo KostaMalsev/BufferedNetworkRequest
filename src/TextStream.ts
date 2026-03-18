@@ -5,7 +5,7 @@
  */
 export abstract class TextStreamInterface<ChunkType> {
 
-    #stream: ReadableStream<string>
+    private stream: ReadableStream<string>
 
     /**
      * @param respBody A `Response`'s `body`.
@@ -16,7 +16,7 @@ export abstract class TextStreamInterface<ChunkType> {
         textDecoderStream = new TextDecoderStream()
     ) {
 
-        this.#stream = respBody.pipeThrough(
+        this.stream = respBody.pipeThrough(
             textDecoderStream
         )
 
@@ -24,7 +24,7 @@ export abstract class TextStreamInterface<ChunkType> {
 
     async *[Symbol.asyncIterator]() {
 
-        for await (const chunk of this.#stream) {
+        for await (const chunk of this.stream) {
 
             const processedChunk = this.processChunk(chunk)
 

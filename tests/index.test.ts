@@ -1,6 +1,4 @@
-import { expect, test } from 'vitest'
-import { fn } from '../src'
 
-test('fn', () => {
-  expect(fn()).toBe('Hello, tsdown!')
-})
+import './InvalidJSONParser.test'
+import './TextStream.test'
+import './JSONObjectStream.test'

@@ -8,7 +8,7 @@
  * @template ChunkType The processed chunk type to stream.
  */
 declare abstract class TextStreamInterface<ChunkType> {
-  #private;
+  private stream;
   /**
    * @param respBody A `Response`'s `body`.
    * @param textDecoderStream A custom text decoder stream to use.
@@ -40,7 +40,8 @@ declare const _default: InvalidJSONParser;
  * Stream JSON objects in chunks from a `Response`.
  */
 declare class JSONObjectStream extends TextStreamInterface<ValidJSONObjects> {
-  #private;
+  private fullJSONStr;
+  private lastValidJSONObjectCount;
   processChunk(chunk: string): object[] | null;
 }
 //#endregion
