@@ -9,7 +9,7 @@ on:
     # see: https://docs.github.com/en/actions/using-workflows/triggering-a-workflow#example-including-paths
     paths:
       - 'src/**'
-      - './build.js'
+      - './build.yml'
       
   workflow_dispatch:
 
